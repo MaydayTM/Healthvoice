@@ -48,6 +48,15 @@ export const colors = {
   success: '#4D7C0F',
   warning: '#B45309',
   error: '#B91C1C',
+  // Category colors
+  category: {
+    voeding: '#4D7C0F',      // Olive green
+    supplement: '#7E22CE',   // Deep purple
+    beweging: '#B45309',     // Warm amber
+    slaap: '#1E40AF',        // Deep blue
+    welzijn: '#BE185D',      // Rose
+    overig: '#57534E',       // Stone
+  },
 };
 
 export const shadows = {
