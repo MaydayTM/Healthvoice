@@ -30,7 +30,11 @@ None (React Native / Expo / Supabase — standard patterns)
 **Goal**: Fix all TODO stubs and implement missing basic functionality
 **Depends on**: Nothing (first phase)
 **Research**: Unlikely (internal patterns, straightforward fixes)
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01: Create EditModal component with category-specific fields
+- [ ] 01-02: Add delete confirmation dialog, clean up TODOs
 
 Key work:
 - Implement edit modal for health logs
@@ -159,7 +163,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Technical Debt Cleanup | 0/TBD | Not started | - |
+| 1. Technical Debt Cleanup | 0/2 | Not started | - |
 | 2. Instant Feedback | 0/TBD | Not started | - |
 | 3. Correlation Engine Core | 0/TBD | Not started | - |
 | 4. Correlation UI | 0/TBD | Not started | - |
