@@ -14,6 +14,7 @@ import { useRecording } from '../../hooks/useRecording';
 import { VoiceButton } from '../../components/VoiceButton';
 import { LogItem } from '../../components/LogItem';
 import { ClarifyModal } from '../../components/ClarifyModal';
+import { EditModal } from '../../components/EditModal';
 import { HealthLog } from '../../types';
 import { colors, typography, shadows } from '../../constants/theme';
 
@@ -62,6 +63,7 @@ export default function TimelineScreen() {
   } = useRecording();
 
   const [refreshing, setRefreshing] = React.useState(false);
+  const [editingLog, setEditingLog] = React.useState<HealthLog | null>(null);
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
@@ -72,8 +74,12 @@ export default function TimelineScreen() {
   const groupedLogs = getLogsGroupedByDate();
 
   const handleEdit = (log: HealthLog) => {
-    // TODO: Open edit modal
-    console.log('Edit log:', log.id);
+    setEditingLog(log);
+  };
+
+  const handleSaveEdit = async (logId: string, updates: Partial<HealthLog>) => {
+    await editLog(logId, updates);
+    setEditingLog(null);
   };
 
   const handleDelete = async (log: HealthLog) => {
@@ -230,6 +236,14 @@ export default function TimelineScreen() {
         transcript={currentTranscript}
         onSubmit={submitClarification}
         onDismiss={dismissClarification}
+      />
+
+      {/* Edit modal */}
+      <EditModal
+        visible={editingLog !== null}
+        log={editingLog}
+        onSave={handleSaveEdit}
+        onDismiss={() => setEditingLog(null)}
       />
     </SafeAreaView>
   );
