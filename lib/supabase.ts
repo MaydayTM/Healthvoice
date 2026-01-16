@@ -48,6 +48,23 @@ export async function createProfile(userId: string): Promise<Profile | null> {
     .single();
 
   if (error) {
+    // If profile already exists (duplicate key), fetch it instead
+    if (error.code === '23505') {
+      const { data: existingData } = await supabase
+        .from('hv_user_settings')
+        .select('*')
+        .eq('user_id', userId)
+        .single();
+
+      if (existingData) {
+        return {
+          id: existingData.user_id,
+          created_at: existingData.created_at,
+          display_name: existingData.display_name,
+          preferences: existingData.preferences,
+        };
+      }
+    }
     console.error('Error creating profile:', error);
     return null;
   }

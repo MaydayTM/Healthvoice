@@ -73,6 +73,13 @@ export default function TimelineScreen() {
 
   const groupedLogs = getLogsGroupedByDate();
 
+  // Debug: log user ID to console
+  useEffect(() => {
+    if (user) {
+      console.log('=== USER ID ===', user.id);
+    }
+  }, [user]);
+
   const handleEdit = (log: HealthLog) => {
     setEditingLog(log);
   };
